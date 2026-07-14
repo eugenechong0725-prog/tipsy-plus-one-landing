@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tipsy Plus One — Bar & Event Space Landing Page
 
-## Getting Started
+A premium, mobile-first one-page landing page for **Tipsy Plus One (TPO)**.
+Built for conversion: WhatsApp table bookings, event space enquiries, and Meta /
+Instagram ad traffic.
 
-First, run the development server:
+Built with **Next.js (App Router) + TypeScript + Tailwind CSS v4**.
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3010](http://localhost:3010) (booking: [http://localhost:3010/#book](http://localhost:3010/#book)).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Page sections
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Hero** — headline, "Book a Table" + "Event Space Enquiry" CTAs.
+2. **About / Atmosphere** — vibe copy, 3 photos, 3 highlight cards.
+3. **Booking** — WhatsApp-only: *Book a Table* and *Event Space Enquiry* open chat directly.
+4. **Gallery** — 6 curated bar / drinks / nightlife / event photos.
+5. **Contact** — WhatsApp CTA, location, opening hours.
 
-## Learn More
+All enquiries go through **WhatsApp only** — no email, no backend.
 
-To learn more about Next.js, take a look at the following resources:
+## Editing content (for the client)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Business details — `src/lib/config.ts`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| What | Where |
+| --- | --- |
+| Bar name / wordmark | `site.name`, `site.wordmark` |
+| WhatsApp number & default message | `site.whatsappNumber`, `site.whatsappMessage` |
+| Location | `site.location.label` |
+| Opening hours | `site.hours` |
+| Instagram link | `site.social.instagram` |
 
-## Deploy on Vercel
+> **WhatsApp number format:** digits only, no `+`, spaces or dashes.
+> Example: `+60 12-345 6789` → `60123456789`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Photos — `src/lib/images.ts`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Array | Used in | Count |
+| --- | --- | --- |
+| `heroImage` | Hero background | 1 |
+| `aboutImages` | About section | 3 |
+| `galleryImages` | Gallery grid | 6 |
+
+Drop real photos into `public/gallery/` and update each `src` to e.g.
+`"/gallery/hero.jpg"`.
+
+## How booking works
+
+Booking buttons open WhatsApp with a prefilled message. Edit default text in `src/lib/config.ts`.
+
+No backend, no email, no Google Sheets — just update the WhatsApp number in
+`src/lib/config.ts`.
+
+## Tech
+
+- Next.js 16 (App Router)
+- React 19
+- Tailwind CSS v4
+- TypeScript

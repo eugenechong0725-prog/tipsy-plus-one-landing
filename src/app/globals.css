@@ -1,26 +1,243 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand palette — premium nightlife (dark + warm gold) */
+  --color-ink: #0a0a0a;
+  --color-ink-soft: #101010;
+  --color-ink-card: #151311;
+  --color-line: #2a2621;
+
+  --color-gold: #c9a24b;
+  --color-gold-soft: #e6cd8f;
+  --color-gold-deep: #a07d2e;
+
+  --color-cream: #f4efe4;
+
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+
+  --shadow-glow: 0 0 60px -15px rgba(201, 162, 75, 0.35);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-padding-top: 5rem;
+    scroll-behavior: smooth;
+  }
+  body {
+    background:
+      radial-gradient(
+        900px circle at 50% -5%,
+        rgba(201, 162, 75, 0.1),
+        transparent 60%
+      ),
+      var(--color-ink);
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2a2621;
+    border-radius: 999px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.3em] text-gold;
+  }
+  .display {
+    @apply font-serif font-medium leading-[1.02] tracking-tight text-cream;
+  }
+  .field-label {
+    @apply mb-2 block text-xs font-medium uppercase tracking-[0.15em] text-cream/50;
+  }
+  .field {
+    @apply w-full rounded-lg border border-line bg-ink/60 px-4 py-3 text-[15px] text-cream
+      placeholder:text-cream/30 outline-none transition
+      focus:border-gold/60 focus:ring-2 focus:ring-gold/15;
+  }
+  .field-select {
+    @apply appearance-none bg-[length:1rem] bg-[right_0.9rem_center] bg-no-repeat pr-10;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23c9a24b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  }
+  .field-textarea {
+    @apply min-h-[5.5rem] resize-y;
+  }
+  .picker-popover {
+    animation: picker-enter 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .picker-nav-button {
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-lg text-cream/70 transition-colors hover:border-gold/50 hover:text-gold disabled:cursor-not-allowed disabled:opacity-30;
+  }
+  .picker-weekdays {
+    @apply mb-2 grid grid-cols-7 gap-1 text-center text-[10px] uppercase tracking-[0.18em] text-cream/40;
+  }
+  .picker-days {
+    @apply grid grid-cols-7 gap-1;
+  }
+  .picker-day {
+    @apply inline-flex h-10 w-full items-center justify-center rounded-lg text-sm text-cream/80 transition-colors hover:bg-gold/10 hover:text-gold disabled:cursor-not-allowed disabled:opacity-25;
+  }
+  .picker-day-selected {
+    @apply bg-gold text-ink hover:bg-gold hover:text-ink;
+  }
+  .picker-day-today {
+    @apply border border-gold/35;
+  }
+  .section-reveal {
+    @apply motion-safe:opacity-100;
+  }
+  .hero-bg-motion {
+    animation: hero-bg-drift 18s ease-out both;
+    transform-origin: center;
+  }
+  .hero-reveal {
+    animation: hero-reveal 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .hero-reveal-delay-1 {
+    animation-delay: 120ms;
+  }
+  .hero-reveal-delay-2 {
+    animation-delay: 240ms;
+  }
+  .hero-reveal-delay-3 {
+    animation-delay: 360ms;
+  }
+  .premium-button {
+    @apply transition-all duration-300 ease-out hover:scale-[1.01] active:scale-[0.99];
+  }
+  .premium-glow {
+    box-shadow: 0 10px 34px -27px rgba(201, 162, 75, 0.72);
+  }
+  .premium-glow:hover {
+    box-shadow: 0 14px 46px -30px rgba(201, 162, 75, 0.82);
+  }
+  .premium-card {
+    @apply transition-all duration-300 ease-out hover:border-gold/45;
+    transform: translate3d(0, var(--card-y, 0), 0);
+  }
+  .premium-card:hover {
+    --card-y: -2px;
+    box-shadow: 0 18px 54px -42px rgba(201, 162, 75, 0.32);
+  }
+  .premium-image {
+    --media-scale: 1;
+    transform: scale(var(--media-scale));
+    transition: transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .photo-lift {
+    filter: brightness(1.28) contrast(1.04) saturate(1.06);
+  }
+  .group:hover .premium-image {
+    --media-scale: 1.018;
+  }
+  .motion-parallax {
+    --media-scale: 1.025;
+  }
+  .group:hover .motion-parallax {
+    --media-scale: 1.04;
+  }
+  .floating-whatsapp-enter {
+    animation: hero-reveal 560ms cubic-bezier(0.22, 1, 0.36, 1) 900ms both;
+  }
+  .scroll-cue {
+    animation: scroll-cue 1.8s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ready .section-reveal,
+  .motion-ready .premium-card {
+    opacity: 0;
+    --card-y: 18px;
+    transform: translate3d(0, var(--card-y), 0);
+    transition:
+      opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 720ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 300ms ease,
+      box-shadow 300ms ease;
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .motion-ready .section-reveal.is-visible,
+  .motion-ready .premium-card.is-visible {
+    opacity: 1;
+    --card-y: 0px;
+  }
+
+  .motion-ready .premium-card.is-visible:hover {
+    --card-y: -2px;
+  }
+}
+
+@keyframes hero-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes hero-bg-drift {
+  from {
+    transform: scale(1.035);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes section-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-cue {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.65;
+    transform: translateY(5px);
+  }
+}
+
+@keyframes picker-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .premium-image,
+  .premium-card {
+    transform: none !important;
+  }
 }

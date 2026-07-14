@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local photo analysis / extract temp files
+public/menu/_analyze/
+public/menu/_extract/
+scripts/_copy-assets.mjs
