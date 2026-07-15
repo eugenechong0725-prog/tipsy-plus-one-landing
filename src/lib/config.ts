@@ -22,13 +22,15 @@ Estimated Number of Guests:
 Special Requirements:`,
   whatsappMenuMessage:
     "Hi! I'm interested in visiting. Could you send me your menu? 😊",
-  phoneDisplay: "010-387 8706",
+  phoneDisplay: "+6010-387 8706",
+  email: "info@tipsyplusone.com",
 
   location: {
     label: "Tipsy Plus One - TPO",
-    venue: "Megah Rise Mall, Petaling Jaya",
+    venue:
+      "Megah Rise Mall, Lot 1-3, Level 1, 3, Jalan SS 24/9, Taman Megah, 47301 Petaling Jaya, Selangor",
     googleMaps:
-      "https://www.google.com/maps/search/?api=1&query=Tipsy+Plus+One+Megah+Rise+Mall+Petaling+Jaya",
+      "https://www.google.com/maps/search/?api=1&query=Megah+Rise+Mall%2C+Lot+1-3%2C+Level+1%2C+3%2C+Jalan+SS+24%2F9%2C+Taman+Megah%2C+47301+Petaling+Jaya%2C+Selangor",
   },
 
   hours: [{ day: "Mon – Sun", time: "11:00 AM – 1:00 AM" }],

@@ -40,7 +40,9 @@ export default function Contact() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
             <InfoCard icon={MapPinIcon} title="Location">
               <p className="text-lg text-cream/80">{site.location.label}</p>
-              <p className="mt-1 text-sm text-cream/50">{site.location.venue}</p>
+              <p className="mt-1 text-sm leading-relaxed text-cream/50">
+                {site.location.venue}
+              </p>
               <a
                 href={site.location.googleMaps}
                 target="_blank"

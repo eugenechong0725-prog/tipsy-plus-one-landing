@@ -21,6 +21,27 @@ export default function Footer() {
           <p className="mt-1 text-xs uppercase tracking-[0.25em] text-cream/40">
             {site.tagline}
           </p>
+          <div className="mt-4 max-w-sm space-y-2 text-center text-sm leading-relaxed text-cream/50 sm:text-left">
+            <p>{site.location.venue}</p>
+            <p>
+              <span className="text-cream/40">Phone: </span>
+              <a
+                href={`tel:+${site.whatsappNumber}`}
+                className="text-cream/70 transition-colors hover:text-gold"
+              >
+                {site.phoneDisplay}
+              </a>
+            </p>
+            <p>
+              <span className="text-cream/40">Email: </span>
+              <a
+                href={`mailto:${site.email}`}
+                className="text-cream/70 transition-colors hover:text-gold"
+              >
+                {site.email}
+              </a>
+            </p>
+          </div>
         </div>
 
         <div className="flex flex-col items-center gap-4 sm:items-end">
