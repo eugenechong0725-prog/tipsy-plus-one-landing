@@ -17,7 +17,14 @@ const sans = Inter({
   display: "swap",
 });
 
+const siteUrl = "https://tipsyplusone.com";
+const ogImageUrl = `${siteUrl}/og-image.png`;
+const ogTitle = "Tipsy Plus One — Bar & Event Space";
+const ogDescription =
+  "Book your table or enquire about private events and celebrations at Tipsy Plus One.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: `${site.name} — ${site.tagline} | Reserve Your Night`,
   description:
     "Book your table or enquire about private events at Tipsy Plus One. " +
@@ -27,10 +34,25 @@ export const metadata: Metadata = {
     apple: site.logo,
   },
   openGraph: {
-    title: `${site.name} — ${site.tagline}`,
-    description:
-      "Book your table or enquire for private events and celebrations at Tipsy Plus One.",
+    title: ogTitle,
+    description: ogDescription,
+    url: siteUrl,
     type: "website",
+    siteName: site.name,
+    images: [
+      {
+        url: ogImageUrl,
+        width: 1200,
+        height: 630,
+        alt: ogTitle,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: ogTitle,
+    description: ogDescription,
+    images: [ogImageUrl],
   },
 };
 
