@@ -33,7 +33,18 @@ export default function EventSpaceGallery() {
         overlayStrength="medium"
         className="premium-card rounded-2xl border border-line"
       />
-      {supporting.length > 0 && (
+      {supporting.length === 1 && (
+        <BarPhoto
+          src={supporting[0].src}
+          alt={supporting[0].alt}
+          caption={supporting[0].caption}
+          category={supporting[0].category}
+          aspect="aspect-[4/3]"
+          overlayStrength="subtle"
+          className="premium-card rounded-2xl border border-line"
+        />
+      )}
+      {supporting.length > 1 && (
         <div className="grid grid-cols-2 gap-4">
           {supporting.map((img) => (
             <BarPhoto

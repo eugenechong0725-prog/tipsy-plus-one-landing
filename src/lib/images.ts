@@ -91,7 +91,20 @@ export const galleryNightImages: SiteImage[] = [
 export const galleryImages = gallerySpaceImages;
 
 /** Event space section — dedicated hire photos only. */
-export const eventSpaceImages: SiteImage[] = [];
+export const eventSpaceImages: SiteImage[] = [
+  {
+    src: "/events/event-space-lounge.png",
+    alt: "Tipsy Plus One event space lounge with communal tables, banquette seating and big screen",
+    category: "event",
+    caption: "The event lounge",
+  },
+  {
+    src: "/events/event-space-gathering.png",
+    alt: "Guests gathered at Tipsy Plus One for a private event with big-screen viewing",
+    category: "event",
+    caption: "Private gatherings",
+  },
+];
 
 export const categoryLabels: Record<ImageCategory, string> = {
   interior: "Bar & Lounge",
